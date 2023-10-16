@@ -39,7 +39,7 @@ Toogle.TextScaled = true
 
 -- DATA 
 
-local AutoClickEnabled = false
+local autoClickEnabled = false
 
 
 --AUTO CLİCK
@@ -62,19 +62,17 @@ local args = {
     game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("ParryAttempt"):FireServer(unpack(args))
 end
 
-Toogle.MouseButton1Click:Connent(function()
+Toogle.MouseButton1Click:Connect(function()
     autoClickEnabled = not autoClickEnabled
-    Toogle.Text = "Auto Click: On"
-    Toogle.TextColor3 = Color3.fromRGB(0, 255, 0)
+    Toogle.Text = "Auto Click: " .. (autoClickEnabled and "On" or "Off")
+    Toogle.TextColor3 = autoClickEnabled and Color3.fromRGB(0, 255, 0) or Color3.fromRGB(255, 0, 0)
     
     if autoClickEnabled then
-      while autoClickEnabled do 
-        repeatFunction()
-        wait(1)
-      end 
+        while autoClickEnabled do 
+            repeatFunction()
+            wait(1)
+        end 
     else
-
-      Toogle.TextColor3 Color3.fromRGB(255, 0, 0)
+        Toogle.TextColor3 = Color3.fromRGB(255, 0, 0)
     end
-  end)
-
+end)
